@@ -1,17 +1,9 @@
-import React from "react";
-import { Container, Nav } from "react-bootstrap";
-import styles from "./style.module.scss";
-
 function Footer() {
   return (
-    <footer className={styles.footer}>
-      <a
-        href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        aa
-      </a>
+    <footer className="text-center my-5">
+      <hr className="w-25 m-auto my-4" />
+      <h5>Projeto feito de exemplo para inclusão de item no carrinho</h5>
+      <p>Espero que lhe tenha sido útil</p>
     </footer>
   );
 }
