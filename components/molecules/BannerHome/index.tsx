@@ -1,6 +1,6 @@
 import styles from "./style.module.scss";
 import { Product } from "../../../interfaces/product";
-import { Container, Button } from "react-bootstrap";
+import { Container, Button, Row, Col } from "react-bootstrap";
 import Link from "next/link";
 import Image from "next/image";
 import AddToCart from "../../../utils/AddToCart";
@@ -14,20 +14,27 @@ function BannerHome({ featureProd }: Props) {
     <div className={`${styles.banner} mb-4 py-4`}>
       <Container>
         <h2>Best price for you!</h2>
-        <h1>
-          <Link href={featureProd.slug}>{featureProd.name}</Link>
-        </h1>
-        <h2>{featureProd.desc}</h2>
+        <Row>
+          <Col lg={3}>
+            <Image
+              src={featureProd.img}
+              width={500}
+              height={500}
+              alt={featureProd.desc}
+            />
+          </Col>
+          <Col lg={9}>
+            <h3>
+              <Link href={featureProd.slug}>{featureProd.name}</Link>
+            </h3>
+            <h4>{featureProd.desc}</h4>
 
-        <Image
-          src={featureProd.img}
-          width={500}
-          height={500}
-          alt={featureProd.desc}
-        />
-        <p className="text-bold ">{featureProd.desc}</p>
-        <div>${featureProd.price}</div>
-        <Button onClick={() => AddToCart(featureProd)}>Add to cart</Button>
+            <h3>${featureProd.price}</h3>
+            <Button onClick={() => AddToCart(featureProd)} variant="light">
+              Add to cart
+            </Button>
+          </Col>
+        </Row>
       </Container>
     </div>
   );
