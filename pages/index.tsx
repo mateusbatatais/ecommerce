@@ -4,7 +4,6 @@ import Head from "next/head";
 import Footer from "../components/molecules/Footer";
 import api from "../services/api";
 import { Product } from "../interfaces/product";
-import { Cart } from "../interfaces/cart";
 import { Button, Container, Spinner } from "react-bootstrap";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -86,7 +85,7 @@ const Home: NextPage = () => {
                     height={500}
                     alt={item.desc}
                   />
-                  <Link href={`/product/${item.slug}`}>{item.name}</Link>
+                  <Link href={`/product/${item.id}`}>{item.name}</Link>
                   <p className="text-bold ">{item.desc}</p>
                   <div>${item.price}</div>
                   {item.stock > 0 ? (

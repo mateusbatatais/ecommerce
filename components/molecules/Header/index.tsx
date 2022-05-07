@@ -74,7 +74,7 @@ function Header() {
                 {data.map((item: Cart, index: number) => (
                   <>
                     <div className="small" key={index}>
-                      {item.name}{" "}
+                      {item.name}
                       <Badge pill className="ms-2">
                         {item.amount}
                       </Badge>
