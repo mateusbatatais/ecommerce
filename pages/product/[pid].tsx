@@ -8,7 +8,7 @@ import { Product } from "../../interfaces/product";
 import api from "../../services/api";
 import Image from "next/image";
 import Link from "next/link";
-import AddToCart from "../../utils/AddToCart";
+import AddToCartButton from "../../components/atoms/AddToCartButton";
 
 function Product() {
   const router = useRouter();
@@ -62,7 +62,7 @@ function Product() {
                   <h4>{data.desc}</h4>
 
                   <h3>${data.price}</h3>
-                  <Button onClick={() => AddToCart(data)}>Add to cart</Button>
+                  <AddToCartButton item={data} />
                 </Col>
               </Row>
             </Container>

@@ -11,7 +11,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "../components/molecules/Header";
 import BannerHome from "../components/molecules/BannerHome";
-import AddToCart from "../utils/AddToCart";
+import AddToCartButton from "../components/atoms/AddToCartButton";
 
 const Home: NextPage = () => {
   const [data, setData] = useState<Product[]>([]);
@@ -91,9 +91,7 @@ const Home: NextPage = () => {
                   {item.stock > 0 ? (
                     <>
                       <p className="small">stock: {item.stock}</p>
-                      <Button onClick={() => AddToCart(item)}>
-                        Add to cart
-                      </Button>
+                      <AddToCartButton item={item} />
                     </>
                   ) : (
                     <p className="small">Out of stock</p>

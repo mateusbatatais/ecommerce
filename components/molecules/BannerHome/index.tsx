@@ -3,7 +3,7 @@ import { Product } from "../../../interfaces/product";
 import { Container, Button, Row, Col } from "react-bootstrap";
 import Link from "next/link";
 import Image from "next/image";
-import AddToCart from "../../../utils/AddToCart";
+import AddToCartButton from "../../atoms/AddToCartButton";
 
 interface Props {
   featureProd: Product;
@@ -30,9 +30,7 @@ function BannerHome({ featureProd }: Props) {
             <h4>{featureProd.desc}</h4>
 
             <h3>${featureProd.price}</h3>
-            <Button onClick={() => AddToCart(featureProd)} variant="light">
-              Add to cart
-            </Button>
+            <AddToCartButton item={featureProd} variant="light" />
           </Col>
         </Row>
       </Container>

@@ -11,9 +11,10 @@ import {
 } from "react-bootstrap";
 import styles from "./style.module.scss";
 import api from "../../../services/api";
+import { useToast } from "../../../context/Toast";
 
 function Header() {
-  const [alert, setAlert] = useState(false);
+  const { toast, setToast } = useToast();
   const [data, setData] = useState<Cart[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -31,10 +32,11 @@ function Header() {
   return (
     <header className="bgBlack text-light-custom">
       <Container>
-        <ToastContainer className="p-3" position="top-center">
+        <ToastContainer className="p-3 position">
           <Toast
-            onClose={() => setAlert(false)}
-            show={alert}
+            className={styles.customToast}
+            onClose={() => setToast(false)}
+            show={toast}
             bg="success"
             delay={3000}
             autohide
@@ -72,15 +74,12 @@ function Header() {
             ) : data && data.length ? (
               <div className={`${styles.dpDown} px-3`}>
                 {data.map((item: Cart, index: number) => (
-                  <>
-                    <div className="small" key={index}>
-                      {item.name}
-                      <Badge pill className="ms-2">
-                        {item.amount}
-                      </Badge>
-                    </div>
-                    <hr className="my-2" />
-                  </>
+                  <div className="small" key={index}>
+                    {item.name}
+                    <Badge pill className="ms-2">
+                      {item.amount}
+                    </Badge>
+                  </div>
                 ))}
               </div>
             ) : (
