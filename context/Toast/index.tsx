@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext } from "react";
 
-const ToastContext = createContext<any | null>(null);
+const ToastContext = createContext<any | false>(false);
 
 export default function ToastProvider({ children }: any) {
   const [toast, setToast] = useState(false);

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Cart } from "../../../interfaces/cart";
+import { useCart } from "../../../context/Cart";
+
 import {
   ToastContainer,
   Toast,
@@ -10,24 +12,15 @@ import {
   Badge,
 } from "react-bootstrap";
 import styles from "./style.module.scss";
-import api from "../../../services/api";
 import { useToast } from "../../../context/Toast";
 
 function Header() {
   const { toast, setToast } = useToast();
-  const [data, setData] = useState<Cart[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  const listItems = () => {
-    api.get("/cart").then((response) => {
-      setLoading(false);
-      setData(response.data);
-    });
-  };
+  const { cart, listCart, loading } = useCart();
 
   useEffect(() => {
-    listItems();
-  }, []);
+    listCart();
+  }, [cart]);
 
   return (
     <header className="bgBlack text-light-custom">
@@ -71,9 +64,9 @@ function Header() {
                 role="status"
                 aria-hidden="true"
               />
-            ) : data && data.length ? (
+            ) : cart && cart.length ? (
               <div className={`${styles.dpDown} px-3`}>
-                {data.map((item: Cart, index: number) => (
+                {cart.map((item: Cart, index: number) => (
                   <div className="small" key={index}>
                     {item.name}
                     <Badge pill className="ms-2">
