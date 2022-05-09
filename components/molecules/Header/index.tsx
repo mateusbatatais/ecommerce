@@ -12,15 +12,12 @@ import {
   Badge,
 } from "react-bootstrap";
 import styles from "./style.module.scss";
+import api from "../../../services/api";
 import { useToast } from "../../../context/Toast";
 
 function Header() {
   const { toast, setToast } = useToast();
-  const { cart, listCart, loading } = useCart();
-
-  useEffect(() => {
-    listCart();
-  }, [cart]);
+  const { cart, loading } = useCart();
 
   return (
     <header className="bgBlack text-light-custom">

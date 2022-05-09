@@ -20,10 +20,12 @@ export default function CartProvider({ children }: any) {
   };
   useEffect(() => {
     listCart();
-  }, []);
+  }, [loading]);
 
   const addToCart = (item: Product) => {
+    setLoading(true);
     setFoundProduct(cart && cart.find((cart: Cart) => cart.id === item.id));
+    console.log(cart);
 
     const updateCartItem = () => {
       api.put(`/cart/${item.id}`, {
@@ -49,9 +51,7 @@ export default function CartProvider({ children }: any) {
   };
 
   return (
-    <CartContext.Provider
-      value={{ cart, setCart, addToCart, listCart, loading }}
-    >
+    <CartContext.Provider value={{ cart, setCart, addToCart, loading }}>
       {children}
     </CartContext.Provider>
   );
@@ -59,6 +59,6 @@ export default function CartProvider({ children }: any) {
 
 export function useCart() {
   const context = useContext(CartContext);
-  const { cart, setCart, addToCart, listCart, loading }: any = context;
-  return { cart, setCart, addToCart, listCart, loading };
+  const { cart, setCart, addToCart, loading }: any = context;
+  return { cart, setCart, addToCart, loading };
 }
