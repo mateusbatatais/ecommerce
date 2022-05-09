@@ -9,7 +9,6 @@ const CartContext = createContext<any | null>(null);
 export default function CartProvider({ children }: any) {
   const { setToast } = useToast();
   const [cart, setCart] = useState<Cart[]>([]);
-  const [foundProduct, setFoundProduct] = useState<any>();
   const [loading, setLoading] = useState<boolean>(true);
 
   const listCart = () => {
@@ -23,14 +22,15 @@ export default function CartProvider({ children }: any) {
   }, [loading]);
 
   const addToCart = (item: Product) => {
+    const foundProduct =
+      cart && cart.find((cart: Cart) => cart.productId === item.id);
     setLoading(true);
-    setFoundProduct(cart && cart.find((cart: Cart) => cart.id === item.id));
-    console.log(cart);
 
     const updateCartItem = () => {
-      api.put(`/cart/${item.id}`, {
-        amount: foundProduct.amount + 1,
-      });
+      foundProduct &&
+        api.put(`/cart/${foundProduct.id}`, {
+          amount: foundProduct.amount + 1,
+        });
       setToast(true);
       listCart();
     };
